@@ -15,7 +15,9 @@ export default function App() {
 			<InputContainer 
 				addTask = {addTask}
 			/>
-			<TaskContainer />
+			<TaskContainer 
+				listOfTasks = {tasks}
+			/>
 		</div>
 	)
 }
