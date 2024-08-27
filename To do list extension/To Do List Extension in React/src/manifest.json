@@ -1,0 +1,16 @@
+{
+    "manifest_version": 3,
+    "version": "1.0",
+    "name": "MY TO-DOS",
+    "action": {
+        "default_popup": "../dist/index.html",
+        "default_icon": "../dist/icon.jpg"
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["../dist/assets/index-C7lYvsTh.js"],
+            "css": ["../dist/assets/index-CxoajuE6.css"]
+        }
+    ]
+}
