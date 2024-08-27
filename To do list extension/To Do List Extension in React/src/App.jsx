@@ -10,6 +10,10 @@ export default function App() {
 		setTasks(prevTasks => [...prevTasks, newTask])
 	}
 
+	function deleteTask(id){
+		setTasks(prevTasks => [...prevTasks.slice(0, id), ...prevTasks.slice(id + 1)])
+	}
+
 	return (
 		<div className ="container">
 			<InputContainer 
@@ -17,6 +21,7 @@ export default function App() {
 			/>
 			<TaskContainer 
 				listOfTasks = {tasks}
+				deleteTask = {deleteTask}
 			/>
 		</div>
 	)
