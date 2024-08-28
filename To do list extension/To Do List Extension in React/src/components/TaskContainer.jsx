@@ -1,6 +1,10 @@
 import React from "react"
 import Task from "./Task"
-
+/*
+*   props:
+*       -listOfTasks: the array of tasks stored in the state variable tasks
+*       -deleteTask: function that deletes a task
+*/
 export default function TaskContainer(props){
 
     const listOfTasks = props.listOfTasks

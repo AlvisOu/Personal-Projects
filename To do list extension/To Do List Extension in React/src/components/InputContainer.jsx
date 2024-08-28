@@ -1,14 +1,20 @@
 import React from "react"
 
+/*
+*   props:
+*       -addTask: function that adds a task
+*/
 export default function InputContainer(props){
 
     const [input, setInput] = React.useState("")
 
+        //tracks form changes and updates state variable input
         function handleChange(event){
             const newTask = event.target.value
             setInput(newTask)
         }
 
+        //calls addTask and resets input
         function handleClick(){
             props.addTask(input)
             setInput("")
@@ -19,6 +25,7 @@ export default function InputContainer(props){
                 
                 <input 
                     type="text" 
+                    id="form"
                     className="input--box" 
                     placeholder="Enter Task" 
                     onChange={handleChange}
