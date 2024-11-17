@@ -17,19 +17,29 @@ export default function App() {
 		try {
 			const response = await api.get('/user/tasks');
 			setTasks(response.data.tasks);
-			console.log('Tasks fetched:', response.data.tasks);
-		} catch (error) {
+		} 
+		catch (error) {
 			console.error('Error fetching tasks:', error);
 		}
 	};
 
-	function addTask(newTask){
-		setTasks(prevTasks => [...prevTasks, newTask])
-	}
+	// Function to add a task
+	async function addTask(newTask){
+		if (newTask){
+			try{
+				const response = await api.post('/user/tasks/add', {title: newTask});
+				setTasks((prevTasks) => [...prevTasks, response.data.task]);
+			}
+			catch(error){
+				console.error('Error adding task:', error);
+			}
+		}
+	};
 
+	// Function to delete a task
 	const deleteTask = async (id) => {
 		try{
-			const response = await api.delete(`/user/tasks/${id}`)	
+			const response = await api.delete(`/user/tasks/delete/${id}`)	
 			setTasks((prevTasks) => prevTasks.filter(task => task.id !== id))			
 		}
 		catch(error){
