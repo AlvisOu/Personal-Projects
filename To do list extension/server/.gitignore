@@ -1,0 +1,43 @@
+# Byte-compiled Python files
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual environment
+venv/
+env/
+
+# Environment variables
+.env
+
+# Flask debugging logs
+*.log
+
+# MacOS
+.DS_Store
+
+# Pytest cache
+.pytest_cache/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# VSCode settings (optional, depending on team setup)
+.vscode/
+
+# Coverage reports
+htmlcov/
+.coverage
+*.cover
+coverage.xml
+*.coveragerc
+
+# Distribution/packaging
+*.egg
+*.egg-info/
+dist/
+build/
+*.egg-info
+
+# System files
+Thumbs.db
