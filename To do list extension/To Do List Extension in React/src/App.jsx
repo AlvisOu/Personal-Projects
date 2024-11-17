@@ -1,26 +1,51 @@
 import InputContainer from "./components/InputContainer"
 import TaskContainer from "./components/TaskContainer"
 import React from "react"
+import { useState, useEffect } from 'react';
+import api from './services/api';
 
 export default function App() {
 
-	const tasksFromLocalStorage = JSON.parse(localStorage.getItem("tasks"))
+	const [tasks, setTasks] = useState([]); // State to store the tasks
 
-    //state variable tasks is initialized depending on whether local storage returns null
-    const [tasks, setTasks] = tasksFromLocalStorage ? React.useState(tasksFromLocalStorage) : React.useState([])
-   
-    //When tasks array changes, update local storage
-    React.useEffect( () => {
-        localStorage.setItem("tasks", JSON.stringify(tasks))
-    }, [tasks])
+	useEffect(() => {
+		fetchTasks();
+	}, []);
 
-	function addTask(newTask){
-		setTasks(prevTasks => [...prevTasks, newTask])
-	}
+	// Function to fetch tasks from the backend
+	const fetchTasks = async () => {
+		try {
+			const response = await api.get('/user/tasks');
+			setTasks(response.data.tasks);
+		} 
+		catch (error) {
+			console.error('Error fetching tasks:', error);
+		}
+	};
 
-	function deleteTask(id){
-		setTasks(prevTasks => [...prevTasks.slice(0, id), ...prevTasks.slice(id + 1)])
-	}
+	// Function to add a task
+	async function addTask(newTask){
+		if (newTask){
+			try{
+				const response = await api.post('/user/tasks/add', {title: newTask});
+				setTasks((prevTasks) => [...prevTasks, response.data.task]);
+			}
+			catch(error){
+				console.error('Error adding task:', error);
+			}
+		}
+	};
+
+	// Function to delete a task
+	const deleteTask = async (id) => {
+		try{
+			const response = await api.delete(`/user/tasks/delete/${id}`)	
+			setTasks((prevTasks) => prevTasks.filter(task => task.id !== id))			
+		}
+		catch(error){
+			console.error('Error deleting task:', error);
+		}
+    };
 
 	return (
 		<div className ="container">
