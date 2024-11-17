@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from ..models import Task, db
 
 bp = Blueprint('user', __name__, url_prefix='/api/user')
@@ -15,7 +15,7 @@ def tasks():
     # Return the tasks as JSON
     return jsonify({'tasks': tasks_data})
     
-@bp.route('/tasks/<int:id>', methods=['DELETE'])
+@bp.route('/tasks/delete/<int:id>', methods=['DELETE'])
 def delete_task(id):
     """
     Delete a task by id.
@@ -28,3 +28,26 @@ def delete_task(id):
         return jsonify({'message': 'Task deleted successfully.'}), 200
     else:
         return jsonify({'message': 'Task not found.'}), 404
+    
+@bp.route('/tasks/add', methods=['POST'])
+def add_task():
+    """
+    Add a new task.
+    """
+    try:
+        title = request.json.get('title')
+        
+        if not title:
+            return jsonify({'message': 'Title is required.'}), 400
+        
+        new_task = Task(title=title)
+        db.session.add(new_task)
+        db.session.commit()
+        
+        return jsonify({
+            'message': 'Task added successfully.', 
+            'task': {"id": new_task.id, "title": new_task.title}
+        }), 201
+    
+    except Exception as e:
+        return jsonify({'message': 'An error occurred while adding the task.'}), 500
