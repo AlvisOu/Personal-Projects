@@ -12,5 +12,8 @@
             "js": ["assets/index-C7lYvsTh.js"],
             "css": ["assets/index-CxoajuE6.css"]
         }
+    ],
+    "host_permissions": [
+        "http://127.0.0.1:5000/*"  
     ]
 }
