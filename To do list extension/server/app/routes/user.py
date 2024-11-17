@@ -1,4 +1,5 @@
-from flask import Blueprint, jsonify, current_app, request
+from flask import Blueprint, jsonify
+from ..models import Task
 
 bp = Blueprint('user', __name__, url_prefix='/api/user')
 
@@ -7,5 +8,10 @@ def tasks():
     """
     Access all todo tasks.
     """
-    return jsonify({'tasks': ['task1', 'task2', 'task3']})
+    tasks = Task.query.all()
+
+    tasks_data = [{"id": task.id, "title": task.title} for task in tasks]
+
+    # Return the tasks as JSON
+    return jsonify({'tasks': tasks_data})
     

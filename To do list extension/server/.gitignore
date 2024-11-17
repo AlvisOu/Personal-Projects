@@ -41,3 +41,6 @@ build/
 
 # System files
 Thumbs.db
+
+# Database
+*.db

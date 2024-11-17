@@ -11,12 +11,14 @@ export default function TaskContainer(props){
 
     const tasks = []
     for (let i = 0; i<listOfTasks.length; i++){
-        const value = props.listOfTasks[i]
+        const task = props.listOfTasks[i]
+        const id = task.id
+        const value = task.title
         tasks.push(<Task 
-            key = {i}
-            id = {i}
+            key = {id}
+            id = {id}
             value = {value}
-            deleteTask={()=>props.deleteTask(i)}
+            deleteTask={()=>props.deleteTask(id)}
         />)
     }
 
