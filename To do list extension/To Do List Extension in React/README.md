@@ -1,8 +1,19 @@
-# React + Vite
+# React-Based Task Management Chrome Extension
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a **Task Management Chrome Extension** built with a **React** frontend using **Vite**, a **Flask** backend, and an **SQLite** database for persistent storage. The extension enables users to add, delete, and retrieve tasks with real-time updates via API integration.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## **Features**
+- Dynamic React-based frontend for a responsive and interactive UI.
+- Persistent task storage using Flask with an SQLite database.
+- Real-time task management (adding, deleting, and retrieving tasks) through API calls using Axios.
+- Lightweight build setup with **Vite** for fast and optimized builds.
+
+---
+
+## **Technologies Used**
+- **Frontend**: React (built with Vite)
+- **Backend**: Flask, SQLite
+- **API Integration**: Axios
+
